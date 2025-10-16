@@ -1,0 +1,8 @@
+.venv/
+.env
+__pycache__/
+**/__pycache__/
+*.pyc
+pet_connect_articles_raw.json
+pet_connect_articles_summarized.json
+pet_connect_articles_scored.json.env

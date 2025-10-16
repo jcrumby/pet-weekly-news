@@ -1,0 +1,18 @@
+# Crawl4AI (for website crawling)
+crawl4ai==0.7.2
+
+# Gemini API (for LLM insight processing)
+google-generativeai
+
+# Email sending (plain text via SMTP)
+python-dotenv  
+playwright
+requests
+beautifulsoup4
+lxml
+
+# Additional dependencies for weekly report automation
+schedule
+jinja2
+markdown
+pyyaml

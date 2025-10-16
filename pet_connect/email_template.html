@@ -1,0 +1,40 @@
+<html>
+  <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #222;">
+    <p>Good morning,</p>
+    <p>
+      Here is your <strong>Pet Connect Weekly News Summary</strong> for
+      <strong>{{ today }}</strong>.
+    </p>
+
+    {% for article in articles %}
+      <div style="margin-bottom: 25px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+        <h3 style="margin-bottom: 5px;">
+          <a href="{{ article.url }}" style="color: #0056b3; text-decoration: none;">
+            {{ article.title }}
+          </a>
+        </h3>
+
+        {% if article.formatted_date %}
+          <p style="font-size: 13px; color: #555;">Published: {{ article.formatted_date }}</p>
+        {% endif %}
+
+        <p style="margin-top: 5px;">
+          {{ article.summary or article.description }}
+        </p>
+
+        <p style="font-size: 13px; color: #888;">
+          <a href="{{ article.url }}" style="color: #888;">{{ article.url }}</a>
+        </p>
+
+        {% if article.sponsors %}
+          <p style="font-size: 13px; color: #888;">
+            <strong>Sponsors mentioned:</strong> {{ article.sponsors | join(', ') }}
+          </p>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <p>Have an amazing day,<br><em>Pet Connect News Bot</em></p>
+  </body>
+</html>
+
