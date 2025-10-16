@@ -27,7 +27,7 @@ jobs:
         run: playwright install
 
       - name: Run crawler
-        run: python crawler/weekly_crawler.py
+        run: python pet_connect/workflow.py
 
         env:
           SMTP_SERVER: smtp.gmail.com
