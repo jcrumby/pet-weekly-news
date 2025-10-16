@@ -5,4 +5,4 @@ __pycache__/
 *.pyc
 pet_connect_articles_raw.json
 pet_connect_articles_summarized.json
-pet_connect_articles_scored.json.env
+pet_connect_articles_scored.json

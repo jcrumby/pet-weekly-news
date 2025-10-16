@@ -146,4 +146,5 @@ EMAIL_SETTINGS = {
     "template_name": "email_template.html",
     "template_dir": Path(__file__).resolve().parent,
     "subject_template": "Pet Connect Weekly News Summary - {today}",
+    "from_name": "Pet Connect News Bot",
 }

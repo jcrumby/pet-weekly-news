@@ -315,6 +315,7 @@ def _send_email(articles: Iterable[dict[str, Any]]) -> None:
         template_name=EMAIL_SETTINGS["template_name"],
         template_dir=EMAIL_SETTINGS["template_dir"],
         subject_template=EMAIL_SETTINGS["subject_template"],
+        sender_name=EMAIL_SETTINGS.get("from_name"),
     )
 
 

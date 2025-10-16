@@ -8,6 +8,7 @@ import smtplib
 from datetime import date, datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.utils import formataddr
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
@@ -21,6 +22,7 @@ SMTP_PORT = int(os.getenv("SMTP_PORT", 587))
 EMAIL_USER = os.getenv("EMAIL_USER")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_TO = [email.strip() for email in os.getenv("EMAIL_TO", "").split(",") if email.strip()]
+EMAIL_FROM_NAME = os.getenv("EMAIL_FROM_NAME", "").strip()
 
 
 def render_template(
@@ -54,6 +56,7 @@ def _send_multipart_email(
     smtp_port: int = SMTP_PORT,
     username: str | None = EMAIL_USER,
     password: str | None = EMAIL_PASSWORD,
+    sender_name: str | None = EMAIL_FROM_NAME,
 ) -> None:
     """Send an HTML email using the configured SMTP server."""
 
@@ -64,7 +67,7 @@ def _send_multipart_email(
 
     msg = MIMEMultipart("alternative")
     msg["Subject"] = subject
-    msg["From"] = sender
+    msg["From"] = formataddr((sender_name, sender)) if sender_name else sender
     msg["To"] = ", ".join(recipients)
     msg.attach(MIMEText(html_content, "html"))
 
@@ -91,6 +94,7 @@ def send_articles_email(
     today_format: str = "%B %d, %Y",
     email_to: Sequence[str] | None = None,
     email_from: str | None = None,
+    sender_name: str | None = EMAIL_FROM_NAME,
     extra_context: Mapping[str, object] | None = None,
     context_key: str = "articles",
 ) -> None:
@@ -135,4 +139,5 @@ def send_articles_email(
         html_content=html_content,
         email_from=email_from,
         email_to=email_to,
+        sender_name=sender_name,
     )
